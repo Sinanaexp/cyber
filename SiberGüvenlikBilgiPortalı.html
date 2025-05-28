@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://b353c5e6-d30e-40cf-b99f-9cac325b3289-00-2f7wqwyrqup0d.sisko.replit.dev/ -->
+<html lang="tr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Siber Güvenlik Bilgi Portalı</title>
+  <link href="./SiberGüvenlikBilgiPortalı_files/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      line-height: 1.6;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    /* Matrix effect */
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .matrix-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Banner */
+    .banner {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      color: #fff;
+      background-color: #000;
+      font-size: 3.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      user-select: none;
+    }
+    .designer {
+      font-size: 1rem;
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    /* Content frame */
+    .content-frame {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 3px solid #00ff00;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.5);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .content-frame h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .content-frame h2 {
+      border-bottom: 2px solid #00ff00;
+      padding-bottom: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .terminal {
+      background-color: #1e1e1e;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      position: relative;
+    }
+    .terminal pre {
+      display: none;
+    }
+    .tooltip-custom {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      z-index: 10;
+      font-size: 1rem;
+      box-shadow: 0 0 10px rgba(100, 100, 255, 0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-in-out;
+      pointer-events: none;
+    }
+    .terminal:hover .tooltip-custom {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #888;
+      user-select: none;
+      padding-bottom: 20px;
+    }
+    /* Pagination style: small squares with active highlight */
+    .pagination-dots {
+      text-align: center;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+    .pagination-dots button {
+      background-color: #004400;
+      border: 1px solid #00ff00;
+      width: 14px;
+      height: 14px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: inline-block;
+      padding: 0;
+      vertical-align: middle;
+    }
+    .pagination-dots button.active {
+      background-color: #00ff00;
+      border-color: #00ff00;
+    }
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      padding: 0 15px;
+    }
+    /* Nav buttons < > */
+    .nav-buttons {
+      text-align: center;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+    .nav-buttons button {
+      background-color: transparent;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      font-size: 1.8rem;
+      padding: 5px 15px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+    .nav-buttons button:hover {
+      background-color: #00ff00;
+      color: #000;
+    }
+    /* Images styling */
+    .content-image {
+      max-width: 100%;
+      border: 3px solid #00ff00;
+      border-radius: 8px;
+      box-shadow: 0 0 12px #00ff00;
+      margin-top: 15px;
+      display: block;
+      height: auto;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">GELİŞİM TEKNOLOJİ ATÖLYESİ CYBER SECURTİY</div>
+  <div class="designer"></div>
+
+  <div class="matrix">
+    <canvas class="matrix-canvas" width="1920" height="945"></canvas>
+  </div>
+
+  <div class="page-container">
+    <!-- Sayfa içeriği burada -->
+    <div id="page-content">
+        <div class="content-frame">
+          <h1>Siber Güvenlik Bilgi Portalı</h1>
+
+          <div class="terminal">
+            <h2>Siber Güvenlik Nedir?</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Siber güvenlik, sadece bilgisayar korsanlarını durdurmak değil; aynı zamanda dijital varlıkların, bilgilerin 
+              ve kullanıcıların gizliliğini koruma sanatıdır. Devletlerden bireylere kadar herkesin dijital dünyada güvenli 
+              kalması için bu alandaki bilgi ve çözümler sürekli gelişmektedir. Siber güvenlik; saldırı tespiti, güvenlik açığı 
+              yönetimi ve risk analizlerini kapsayan bir bütündür.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Etik Hackerlık ve Site Güvenliği</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Etik hackerlar, yasal yetkiyle hareket eden siber güvenlik uzmanlarıdır. Bu kişiler sistemleri test ederek güvenlik açıklarını 
+              önceden tespit eder. Site güvenliği, hem kullanıcı verisinin korunması hem de site performansının ve bütünlüğünün devamı 
+              açısından büyük önem taşır. Gelişmiş saldırı analizleri ve düzenli denetimler bu güvenliğin temel taşlarıdır.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Parola Güvenliği</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Parolalar birinci savunma hattıdır. Zayıf veya tekrar edilen parolalar, veri ihlallerinin %80'inden fazlasının sebebidir. 
+              Kurumlar ve bireyler için parola güvenliği, bilgi sızıntılarını önlemenin en temel yoludur.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Doğru Parola Nasıl Oluşturulur?</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Doğru parola, sadece karmaşık değil, aynı zamanda anlamı olmayan bir yapıda olmalıdır. Örneğin: T$g8!qZ#rU@5 gibi. 
+              Ayrıca her hesap için farklı olmalı ve tercihen parola yöneticileriyle saklanmalıdır. Unutulmamalı: En zayıf parola, 
+              zincirin kırıldığı yerdir.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Navigasyon butonları -->
+    <div class="nav-buttons">
+      <button id="prev-page" aria-label="Önceki Sayfa">&lt;</button>
+      <button id="next-page" aria-label="Sonraki Sayfa">&gt;</button>
+    </div>
+
+    <!-- Sayfa numaraları / küçük kareler -->
+    <div class="pagination-dots" id="pagination"><button title="Siber Güvenlik Bilgi Portalı" class="active"></button><button title="Siber Tehditler ve Korunma Yöntemleri"></button><button title="Güvenlik Duvarları ve Şifreleme"></button><button title="Sosyal Mühendislik ve İnsan Faktörü"></button><button title="Siber Güvenlikte Güncel Trendler"></button><button title="Kişisel Veri Koruma ve Yasal Mevzuat"></button></div>
+  </div>
+
+  <footer>
+    <p>© 2025 Siber Güvenlik Bilgi Portalı  |  TASARLAYAN SİNANAEXP CYBER / SİNAN KÜÇÜKÖZ</p>
+  </footer>
+
+<script src="./SiberGüvenlikBilgiPortalı_files/bootstrap.bundle.min.js.indir"></script>
+
+<script>
+  // Matrix effect
+  const canvas = document.querySelector('.matrix-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const fontSize = 14;
+  const columnsCount = canvas.width / fontSize;
+
+  const drops = [];
+  for(let i=0; i<columnsCount; i++) {
+    drops[i] = Math.random() * canvas.height / fontSize;
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.07)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00FF00";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i=0; i<drops.length; i++) {
+      const text = characters.charAt(Math.floor(Math.random()*characters.length));
+      ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+      if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+  setInterval(drawMatrix, 40);
+
+  // Sayfalar (ana sayfa + 5 içerikli sayfa)
+  const pages = [
+    { // Ana Sayfa (senin verdiğin son kodla birebir)
+      title: `Siber Güvenlik Bilgi Portalı`,
+      html: `
+        <div class="content-frame">
+          <h1>Siber Güvenlik Bilgi Portalı</h1>
+
+          <div class="terminal">
+            <h2>Siber Güvenlik Nedir?</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Siber güvenlik, sadece bilgisayar korsanlarını durdurmak değil; aynı zamanda dijital varlıkların, bilgilerin 
+              ve kullanıcıların gizliliğini koruma sanatıdır. Devletlerden bireylere kadar herkesin dijital dünyada güvenli 
+              kalması için bu alandaki bilgi ve çözümler sürekli gelişmektedir. Siber güvenlik; saldırı tespiti, güvenlik açığı 
+              yönetimi ve risk analizlerini kapsayan bir bütündür.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Etik Hackerlık ve Site Güvenliği</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Etik hackerlar, yasal yetkiyle hareket eden siber güvenlik uzmanlarıdır. Bu kişiler sistemleri test ederek güvenlik açıklarını 
+              önceden tespit eder. Site güvenliği, hem kullanıcı verisinin korunması hem de site performansının ve bütünlüğünün devamı 
+              açısından büyük önem taşır. Gelişmiş saldırı analizleri ve düzenli denetimler bu güvenliğin temel taşlarıdır.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Parola Güvenliği</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Parolalar birinci savunma hattıdır. Zayıf veya tekrar edilen parolalar, veri ihlallerinin %80'inden fazlasının sebebidir. 
+              Kurumlar ve bireyler için parola güvenliği, bilgi sızıntılarını önlemenin en temel yoludur.
+            </div>
+          </div>
+
+          <div class="terminal">
+            <h2>Doğru Parola Nasıl Oluşturulur?</h2>
+            <pre>Gizli içerik</pre>
+            <div class="tooltip-custom">
+              Doğru parola, sadece karmaşık değil, aynı zamanda anlamı olmayan bir yapıda olmalıdır. Örneğin: T$g8!qZ#rU@5 gibi. 
+              Ayrıca her hesap için farklı olmalı ve tercihen parola yöneticileriyle saklanmalıdır. Unutulmamalı: En zayıf parola, 
+              zincirin kırıldığı yerdir.
+            </div>
+          </div>
+        </div>
+      `
+    },
+    { // Sayfa 2 (içerik x2 ve resimli)
+      title: "Siber Tehditler ve Korunma Yöntemleri",
+      html: `
+        <div class="content-frame">
+          <h1>Siber Tehditler ve Korunma Yöntemleri</h1>
+          <div class="terminal">
+            <h2>Virüsler ve Malware</h2>
+            <p>Virüsler ve kötü amaçlı yazılımlar, sistemlere zarar veren programlardır. Virüsler genellikle dosyalarla yayılırken, trojanlar gizli arka kapılar açar.</p>
+            <p>Bu tür saldırılar, kişisel bilgilerin çalınmasına ve cihazların zarar görmesine yol açabilir. Güncel antivirüs yazılımları korunmanın temelidir.</p>
+          </div>
+          <div class="terminal">
+            <h2>Phishing Saldırıları</h2>
+            <p>Phishing, kullanıcıları sahte web sitelerine yönlendirerek kişisel bilgilerini ele geçirmeye çalışan saldırı türüdür.</p>
+            <p>Dikkatli olmak, linklere tıklamadan önce URL'yi kontrol etmek ve çift faktörlü kimlik doğrulama kullanmak önemlidir.</p>
+          </div>
+        </div>
+      `
+    },
+    { // Sayfa 3
+      title: "Güvenlik Duvarları ve Şifreleme",
+      html: `
+        <div class="content-frame">
+          <h1>Güvenlik Duvarları ve Şifreleme</h1>
+          <div class="terminal">
+            <h2>Güvenlik Duvarları</h2>
+            <p>Güvenlik duvarları, ağ trafiğini kontrol ederek yetkisiz erişimleri engeller. Hem donanım hem de yazılım tabanlı olabilir.</p>
+            <p>Ağınızı korumak için doğru yapılandırılmış bir güvenlik duvarı şarttır.</p>
+            <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=60" alt="Güvenlik Duvarı" class="content-image" />
+          </div>
+          <div class="terminal">
+            <h2>Şifreleme Teknikleri</h2>
+            <p>Şifreleme, verilerin gizliliğini sağlamak için kullanılan matematiksel algoritmalardır.</p>
+            <p>Veriler, alıcı dışında kimse tarafından okunamaz hale getirilir, böylece veri güvenliği sağlanır.</p>
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60" alt="Şifreleme" class="content-image" />
+          </div>
+        </div>
+      `
+    },
+    { // Sayfa 4
+      title: "Sosyal Mühendislik ve İnsan Faktörü",
+      html: `
+        <div class="content-frame">
+          <h1>Sosyal Mühendislik ve İnsan Faktörü</h1>
+          <div class="terminal">
+            <h2>Sosyal Mühendislik Nedir?</h2>
+            <p>Sosyal mühendislik, insanları kandırarak bilgi sızdırma yöntemidir. Genellikle e-posta veya telefon aracılığıyla gerçekleşir.</p>
+            <p>Bu yöntemle kullanıcıların güveni kötüye kullanılır ve gizli bilgiler elde edilir.</p>
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=60" alt="Sosyal Mühendislik" class="content-image" />
+          </div>
+          <div class="terminal">
+            <h2>Korunma Yolları</h2>
+            <p>Eğitim, dikkat ve bilinçli davranış sosyal mühendislik saldırılarına karşı en etkili yöntemlerdir.</p>
+            <p>Şüpheli mesajları ve istekleri doğrulamadan cevaplamamak gerekir.</p>
+          </div>
+        </div>
+      `
+    },
+    { // Sayfa 5
+      title: "Siber Güvenlikte Güncel Trendler",
+      html: `
+        <div class="content-frame">
+          <h1>Siber Güvenlikte Güncel Trendler</h1>
+          <div class="terminal">
+            <h2>Yapay Zeka Destekli Güvenlik</h2>
+            <p>Yapay zeka, saldırıları tespit etmek ve önlemek için giderek daha fazla kullanılıyor. Anomalileri tespit ederek hızlı müdahale sağlar.</p>
+            <p>Bu teknoloji, insan hatalarını azaltarak siber güvenlikte yeni bir çağı başlatıyor.</p>
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60" alt="Yapay Zeka" class="content-image" />
+          </div>
+          <div class="terminal">
+            <h2>Bulut Güvenliği</h2>
+            <p>Bulut bilişim yaygınlaşırken, verilerin bulut ortamında güvenliği kritik hale geliyor. Şifreleme ve erişim kontrolleri önemli bir rol oynar.</p>
+            <p>Şirketler, bulut ortamlarında güvenlik ihlallerini önlemek için yeni stratejiler geliştiriyor.</p>
+          </div>
+        </div>
+      `
+    },
+    { // Sayfa 6
+      title: "Kişisel Veri Koruma ve Yasal Mevzuat",
+      html: `
+        <div class="content-frame">
+          <h1>Kişisel Veri Koruma ve Yasal Mevzuat</h1>
+          <div class="terminal">
+            <h2>Kişisel Veri Koruma</h2>
+            <p>Kişisel verilerin korunması, bireylerin mahremiyet hakkının temelidir. Veri sızıntıları büyük zararlar verebilir.</p>
+            <p>Güvenli parola kullanımı, düzenli güncellemeler ve farkındalık önemlidir.</p>
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60" alt="Veri Koruma" class="content-image" />
+          </div>
+          <div class="terminal">
+            <h2>Yasal Mevzuat</h2>
+            <p>KVKK, GDPR gibi yasalar, kişisel verilerin işlenmesi ve korunması hakkında sıkı kurallar getirir.</p>
+            <p>Şirketlerin bu yasalara uyumu hem yasal sorumluluk hem de müşteri güveni açısından kritiktir.</p>
+          </div>
+        </div>
+      `
+    }
+  ];
+
+  // Sayfa indexi
+  let currentPage = 0;
+
+  // Sayfa içeriğini güncelle
+  function updatePage() {
+    const contentDiv = document.getElementById('page-content');
+    contentDiv.innerHTML = pages[currentPage].html;
+
+    // Sayfa başlığını değiştirebiliriz (title tag, ama şimdilik sabit bırakıyorum)
+    document.title = pages[currentPage].title;
+
+    // Pagination dots active durumu
+    const dots = document.querySelectorAll('.pagination-dots button');
+    dots.forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === currentPage);
+    });
+  }
+
+  // Pagination dots oluştur
+  function createPagination() {
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
+    for(let i=0; i<pages.length; i++) {
+      const btn = document.createElement('button');
+      btn.title = pages[i].title;
+      if(i === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        updatePage();
+      });
+      paginationDiv.appendChild(btn);
+    }
+  }
+
+  // Önceki sayfa butonu
+  document.getElementById('prev-page').addEventListener('click', () => {
+    currentPage--;
+    if(currentPage < 0) currentPage = pages.length - 1;
+    updatePage();
+  });
+
+  // Sonraki sayfa butonu
+  document.getElementById('next-page').addEventListener('click', () => {
+    currentPage++;
+    if(currentPage >= pages.length) currentPage = 0;
+    updatePage();
+  });
+
+  // İlk yüklemede
+  createPagination();
+  updatePage();
+</script>
+
+
+
+</body></html>
